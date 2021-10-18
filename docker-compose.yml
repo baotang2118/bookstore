@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile.python
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./api:/app
+  ui:
+    build:
+      context: ./ui
+      dockerfile: Dockerfile.react
+  postgres:
+    image: "postgres:14"
