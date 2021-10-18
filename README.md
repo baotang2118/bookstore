@@ -1,7 +1,7 @@
 E dùng docker, resource e dự tính gồm 3 con: 
 - python backend: django, djangorestframework
-- nodejs DB: reactjs, boostrap
-- postgre 
+- nodejs: reactjs, boostrap
+- postgre DB 
 
 E dự tính có những api sau:
 - api lấy danh sách những cuốn sách
