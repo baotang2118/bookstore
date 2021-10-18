@@ -1,10 +1,10 @@
-E dùng docker, resource e dự tính gồm 3 con: 
+This project will use docker to deploy. I estimate that it need 3 container:
 - python backend: django, djangorestframework
 - nodejs: reactjs, boostrap
 - postgre DB 
 
-E dự tính có những api sau:
-- api lấy danh sách những cuốn sách
-- api lấy review của sách
-- api lưu review của sách
-- api lấy giá cả của sách, tên sách, số lượng
+This project will have some API to:
+- get the list of books that we have in DB
+- get reviews for each book
+- save reviews from visitors
+- get prices, book's titles, orders, number of books in warehouse
