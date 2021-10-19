@@ -14,3 +14,9 @@ services:
       dockerfile: Dockerfile.react
   postgres:
     image: "postgres:14"
+    environment:
+      POSTGRES_PASSWORD: "toor"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "bookstore"
+    ports:
+      - "5432:5432"

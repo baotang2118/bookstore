@@ -1,6 +1,12 @@
 FROM python:3.8
+ARG UNAME=randomuser
+ARG UID=1000
+ARG GID=1000
 WORKDIR /app
 COPY . .
 RUN pip install -r requirements.txt
-WORKDIR /app/bookstore
-ENTRYPOINT [ "python", "manage.py", "runserver", "0.0.0.0:80" ]
+RUN groupadd -g $GID -o $UNAME
+RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
+USER $UNAME
+WORKDIR /app/bookworm
+ENTRYPOINT [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]

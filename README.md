@@ -8,3 +8,5 @@ This project will have some API to:
 - get reviews for each book
 - save reviews from visitors
 - get prices, book's titles, orders, number of books in warehouse
+
+Load data to DB: \i db.sql 
