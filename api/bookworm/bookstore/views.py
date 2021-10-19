@@ -3,4 +3,5 @@ from django.http import HttpResponse
 # Create your views here.
 
 def get_books(request):
-    return HttpResponse('Hello World')
+    return HttpResponse('Book lists')
+
