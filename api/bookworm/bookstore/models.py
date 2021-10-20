@@ -23,7 +23,7 @@ class reviews(models.Model):
     review_title = models.CharField(max_length=120)
     review_details = models.TextField()
     review_date = models.TimeField()
-    # rating_star star,
+    rating_star = models.TextChoices('1','2','3','4','5')
 
 class discounts(models.Model):
     book_id = models.BigIntegerField()
