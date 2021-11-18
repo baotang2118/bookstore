@@ -5,56 +5,32 @@ from .models import books, categories, authors, orders, books, \
     order_items, reviews, discounts
 
 
-class categoriesSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    category_name = serializers.CharField(max_length=120)
-    category_desc = serializers.CharField(max_length=255)
+class categoriesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = categories
+        fields = [
+            "id",
+            "category_name",
+            "category_desc",
+        ]
 
-    def create(self, validated_data):
-        return categories.objects.create(**validated_data)
+class authorsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = authors
+        fields = [
+            "id",
+            "author_name",
+            "author_bio",
+        ]
 
-    def update(self, instance, validated_data):
-        instance.category_name = validated_data.get(
-            "category_name", instance.category_name
-        )
-        instance.category_desc = validated_data.get(
-            "category_desc", instance.category_desc
-        )
-        instance.save()
-        return instance
-
-
-class authorsSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    author_name = serializers.CharField()
-    author_bio = serializers.CharField()
-
-    def create(self, validated_data):
-        return authors.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.author_name = validated_data.get("author_name", instance.author_name)
-        instance.author_bio = validated_data.get("author_bio", instance.author_bio)
-        instance.save()
-        return instance
-
-
-class ordersSerializer(serializers.Serializer):
-    id = serializers.IntegerField(read_only=True)
-    order_date = serializers.IntegerField()
-    order_amount = serializers.DecimalField(max_digits=5, decimal_places=2)
-
-    def create(self, validated_data):
-        return orders.objects.create(**validated_data)
-
-    def update(self, instance, validated_data):
-        instance.order_date = validated_data.get("order_date", instance.order_date)
-        instance.order_amount = validated_data.get(
-            "order_amount", instance.order_amount
-        )
-        instance.save()
-        return instance
-
+class ordersSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = orders
+        fields = [
+            "id",
+            "order_date",
+            "order_amount",
+        ]
 
 class booksSerializer(serializers.ModelSerializer):
     class Meta:
@@ -68,7 +44,6 @@ class booksSerializer(serializers.ModelSerializer):
             "book_price",
             "book_cover_photo",
         ]
-        depth = 1
 
 class order_itemsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -80,7 +55,6 @@ class order_itemsSerializer(serializers.ModelSerializer):
             "quantity",
             "price",
         ]
-        depth = 1
 
 class reviewsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -93,7 +67,6 @@ class reviewsSerializer(serializers.ModelSerializer):
             "review_date",
             "rating_star",
         ]
-        depth = 1
 
 class discountsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -105,4 +78,3 @@ class discountsSerializer(serializers.ModelSerializer):
             "discounts_end_date",
             "discount_price",
         ]
-        depth = 1

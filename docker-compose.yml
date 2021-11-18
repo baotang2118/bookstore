@@ -12,6 +12,10 @@ services:
     build:
       context: ./ui
       dockerfile: Dockerfile.react
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./ui:/app
   postgres:
     image: "postgres:14"
     environment:

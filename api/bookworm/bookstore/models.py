@@ -1,20 +1,8 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+# from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-
-
-class books(models.Model):
-    category_id = models.ManyToManyField("categories")
-    author_id = models.ManyToManyField("authors")
-    book_title = models.TextField()
-    book_summary = models.TextField()
-    book_price = models.DecimalField(max_digits=5, decimal_places=2)
-    book_cover_photo = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.book_title
-
 
 class categories(models.Model):
     category_name = models.CharField(max_length=120)
@@ -31,6 +19,16 @@ class authors(models.Model):
     def __str__(self):
         return self.author_name
 
+class books(models.Model):
+    category_id = models.OneToOneField(categories, on_delete=models.CASCADE) 
+    author_id = models.OneToOneField(authors, on_delete=models.CASCADE)
+    book_title = models.TextField()
+    book_summary = models.TextField()
+    book_price = models.DecimalField(max_digits=5, decimal_places=2)
+    book_cover_photo = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.book_title
 
 class reviews(models.Model):
     book_id = models.ForeignKey(books, on_delete=models.CASCADE)
