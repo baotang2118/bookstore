@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Test ajax, session based authentication</h1>
+    <div id="results"></div>
+    <!-- FF Privacy Badger, try in private tab -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+    <script>
+    fetch('/bookstore/authors/').then((resp) => {
+        resp.json().then((data) => {
+            resultsDiv = document.getElementById('results')
+            for (r of data) {
+                resultsDiv.append(r.author_name + ' - ')
+            }
+        })
+    })
+    fetch('/bookstore/authors/2/',{
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': Cookies.get('csrftoken')
+        }
+    })
+    </script>
+</body>
+
+</html>
